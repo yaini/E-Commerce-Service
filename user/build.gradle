@@ -33,7 +33,7 @@ dependencies {
     implementation("org.hibernate:hibernate-validator:${hibernateValidatorVersion}")
 
     compileOnly("org.projectlombok:lombok")
-    runtimeOnly("com:h2database:h2:${h2Version}")
+    runtimeOnly("com.h2database:h2:${h2Version}")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     annotationProcessor("org.projectlombok:lombok")
 
