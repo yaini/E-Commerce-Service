@@ -2,6 +2,7 @@ package com.example.ecommcerce.user.domain.command;
 
 import com.example.ecommcerce.user.domain.model.User;
 import lombok.Builder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
 
@@ -17,7 +18,7 @@ public class SaveUserCommand {
     public User getUser(){
         return User.builder()
                 .userId(this.userId)
-                .userPw(this.userPw)
+                .userPw(new BCryptPasswordEncoder().encode(this.userPw))
                 .build();
     }
 }
