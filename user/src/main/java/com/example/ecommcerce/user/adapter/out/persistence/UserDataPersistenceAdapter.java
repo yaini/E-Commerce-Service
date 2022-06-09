@@ -8,11 +8,18 @@ import com.example.ecommcerce.user.port.out.UserDataProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Component
 public class UserDataPersistenceAdapter implements UserDataProvider {
 
     private final UserRepository repository;
+
+    @Override
+    public Optional<User> findOne(Long id) {
+        return repository.findById(id).map(UserEntityConverter::to);
+    }
 
     @Override
     public User save(final User user) {

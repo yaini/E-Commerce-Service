@@ -7,6 +7,7 @@ public class UserResponseConverter {
 
     public static UserResponse from(final User user){
         return UserResponse.builder()
+                .id(user.getId())
                 .userId(user.getUserId())
                 .build();
     }

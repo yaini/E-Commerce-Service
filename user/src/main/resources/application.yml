@@ -10,6 +10,14 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
 
 eureka:
   instance:

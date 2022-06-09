@@ -7,6 +7,7 @@ public class UserEntityConverter {
 
     public static UserEntity from(final User data) {
         return UserEntity.builder()
+                .id(data.getId())
                 .userId(data.getUserId())
                 .userPw(data.getUserPw())
                 .build();
@@ -14,6 +15,7 @@ public class UserEntityConverter {
 
     public static User to(final UserEntity entity) {
         return User.builder()
+                .id(entity.getId())
                 .userId(entity.getUserId())
                 .userPw(entity.getUserPw())
                 .build();
