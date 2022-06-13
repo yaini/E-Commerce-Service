@@ -20,7 +20,7 @@ public class CatalogController {
     private final CatalogWebAdapter adapter;
 
     @GetMapping
-    public ResponseEntity<List<CatalogResponse>> browse(final @RequestBody BrowseCatalogRequest request){
+    public ResponseEntity<List<CatalogResponse>> browse(final @RequestParam BrowseCatalogRequest request){
         return ResponseEntity.ok(adapter.browse(request));
     }
 

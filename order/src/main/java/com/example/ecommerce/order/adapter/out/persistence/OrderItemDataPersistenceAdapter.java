@@ -8,8 +8,10 @@ import com.example.ecommerce.order.domain.model.OrderItem;
 import com.example.ecommerce.order.port.out.OrderItemDataProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @RequiredArgsConstructor
 @Component
@@ -19,6 +21,10 @@ public class OrderItemDataPersistenceAdapter implements OrderItemDataProvider {
 
     @Override
     public Collection<OrderItem> save(final Long orderId, final Collection<OrderItem> items) {
+        if(CollectionUtils.isEmpty(items)){
+            return Collections.emptyList();
+        }
+
         Collection<OrderItemEntity> entities = OrderItemEntityConverter.from(orderId, items);
 
         return OrderItemEntityConverter.to(repository.saveAll(entities));
