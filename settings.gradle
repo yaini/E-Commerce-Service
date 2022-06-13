@@ -1,6 +1,8 @@
 rootProject.name = 'ecommerce'
 
 include 'server'
+include 'gateway'
+
 include 'user'
 include 'catalog'
 include 'order'
