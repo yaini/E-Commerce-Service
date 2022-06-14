@@ -18,6 +18,13 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.JsonSerializer
+    template:
+      default-topic: ecommerce-order-topic
 
 eureka:
   instance:

@@ -26,7 +26,7 @@ public class Order {
 
     public BigDecimal getTotalPrice(){
         return items.stream()
-                .map( v -> v.getProduct().getPrice() )
+                .map( v -> v.getProduct().getPrice().multiply(BigDecimal.valueOf(v.getQuantity())) )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
