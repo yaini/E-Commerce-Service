@@ -18,6 +18,17 @@ spring:
       ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id:
+      enable-auto-commit: true
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.JsonSerializer
+      max-poll-records: 1000
+    template:
+      default-topic: ecommerce-order-topic
 
 eureka:
   instance:

@@ -19,11 +19,12 @@ public class OrderResponseConverter {
                 .id(data.getId())
                 .userId(data.getUserId())
                 .comment(data.getComment())
+                .totalPrice(data.getTotalPrice())
                 .build();
     }
 
     public static List<OrderResponse> from(final List<Order> data){
-        if(CollectionUtils.isEmpty(data) ){
+        if(CollectionUtils.isEmpty(data)){
             return Collections.emptyList();
         }
 
