@@ -15,18 +15,21 @@ spring:
     url: jdbc:h2:mem:testdb
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     generate-ddl: true
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      group-id:
+      group-id: "ecommerce"
       enable-auto-commit: true
       auto-offset-reset: latest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.JsonSerializer
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       max-poll-records: 1000
+      properties:
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
     template:
       default-topic: ecommerce-order-topic
 

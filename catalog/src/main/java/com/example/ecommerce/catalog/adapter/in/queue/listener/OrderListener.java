@@ -14,7 +14,7 @@ public class OrderListener {
 
     private final CatalogMessageQueueAdapter adapter;
 
-    @KafkaListener(topics="${kafka.template.default-topic}")
+    @KafkaListener(topics="${spring.kafka.template.default-topic}")
     public void process(final OrderMessage message){
         adapter.edit(message);
     }
