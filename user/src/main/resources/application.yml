@@ -15,7 +15,7 @@ spring:
     url: jdbc:h2:mem:testdb
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     show-sql: true
     generate-ddl: true
 
