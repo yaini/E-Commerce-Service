@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class OrderDataMessageQueueAdapter implements OrderEventDataProvider {
 
     @Value("${spring.kafka.template.default-topic}")
-    private final String TOPIC;
+    private String TOPIC;
 
     private final KafkaTemplate<String, OrderMessage> template;
 

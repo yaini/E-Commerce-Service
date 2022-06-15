@@ -4,12 +4,6 @@ server:
 spring:
   application:
     name: order
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-      path: /h2-console
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:13306/ECOMMERCE_ORDER
@@ -18,14 +12,14 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     show-sql: true
     generate-ddl: true
   kafka:
     bootstrap-servers: localhost:9092
     producer:
-      key-serializer: org.springframework.kafka.support.serializer.ErrorHandlingSerializer
-      value-serializer: org.springframework.kafka.support.serializer.ErrorHandlingSerializer
+      key-serializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-serializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
         spring.serializer.key.delegate.class: org.apache.kafka.common.serialization.StringSerializer
         spring.serializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonSerializer

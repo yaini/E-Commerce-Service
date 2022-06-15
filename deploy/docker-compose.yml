@@ -2,11 +2,13 @@ version: '3'
 
 services:
   zookeeper:
+    container_name: ecommerce-zookeeper
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
 
   kafka:
+    container_name: ecommerce-kafka
     image: wurstmeister/kafka
     ports:
       - "9092:9092"
@@ -20,6 +22,7 @@ services:
       - zookeeper
 
   rabbitmq:
+    container_name: ecommerce-rabbitmq
     image: rabbitmq:3-management-alpine
     ports:
       - "15672:15672"
@@ -31,7 +34,7 @@ services:
       RABBITMQ_DEFAULT_PASS: guest
 
   database-mysql:
-    container_name: database-mysql
+    container_name: ecommerce-mysql
     image: mysql/mysql-server:8.0
 
     environment:
@@ -51,7 +54,7 @@ services:
       - '--collation-server=utf8mb4_unicode_ci'
 
   database-adminer:
-    container_name: database-adminer
+    container_name: ecommerce-adminer
     image: adminer:latest
     ports:
       - "18080:8080"
