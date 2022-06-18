@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> add(final SaveUserRequest request){
+    public ResponseEntity<UserResponse> add(@RequestBody final SaveUserRequest request){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(adapter.add(request).getId())
