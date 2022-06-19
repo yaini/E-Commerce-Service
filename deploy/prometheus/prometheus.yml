@@ -1,0 +1,28 @@
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'gateway'
+    scrape_interval: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8000' ]
+
+  - job_name: 'user'
+    scrape_interval: 15s
+    metrics_path: '/users/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+
+  - job_name: 'catalog'
+    scrape_interval: 15s
+    metrics_path: '/catalogs/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8000' ]
+
+  - job_name: 'order'
+    scrape_interval: 15s
+    metrics_path: '/orders/actuator/prometheus'
+    static_configs:
+      - targets: [ 'host.docker.internal:8000' ]
