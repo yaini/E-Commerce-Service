@@ -1,3 +1,10 @@
+management:
+  endpoints:
+    web:
+      base-path: "/orders/actuator"
+      exposure:
+        include: refresh,health,info,prometheus,metrics
+
 server:
   port: 0
 

@@ -4,6 +4,7 @@ import com.example.ecommerce.order.adapter.in.web.OrderWebAdapter;
 import com.example.ecommerce.order.adapter.in.web.request.BrowseOrderRequest;
 import com.example.ecommerce.order.adapter.in.web.request.SaveOrderRequest;
 import com.example.ecommerce.order.adapter.in.web.response.OrderResponse;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class OrderController {
         return ResponseEntity.ok(adapter.browse(request));
     }
 
+    @Timed(value = "read-order", longTask = true)
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponse> read(final @PathVariable("id") Long id){
         return ResponseEntity.ok(adapter.read(id));

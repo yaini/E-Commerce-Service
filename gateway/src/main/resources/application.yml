@@ -1,3 +1,9 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info,prometheus,metrics
+
 server:
   port: 8000
 
@@ -23,12 +29,12 @@ spring:
         - id: user
           uri: lb://USER
           predicates:
-            - Path=/api/v1/users/**
+            - Path=/api/v1/users/**, /users/actuator/**
         - id: catalog
           uri: lb://CATALOG
           predicates:
-            - Path=/api/v1/catalogs/**
+            - Path=/api/v1/catalogs/**, /catalogs/actuator/**
         - id: order
           uri: lb://ORDER
           predicates:
-            - Path=/api/v1/orders/**
+            - Path=/api/v1/orders/**, /orders/actuator/**
