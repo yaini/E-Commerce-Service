@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Getter
@@ -25,12 +27,20 @@ public class Order {
     }
 
     public BigDecimal getTotalPrice(){
+        if( CollectionUtils.isEmpty(this.items) ){
+            return BigDecimal.ZERO;
+        }
+
         return items.stream()
                 .map( v -> v.getProduct().getPrice().multiply(BigDecimal.valueOf(v.getQuantity())) )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Collection<Long> getProductIds(){
+        if( CollectionUtils.isEmpty(this.items) ){
+            return Collections.emptyList();
+        }
+
         return this.items.stream()
                 .map( v -> v.getProduct().getId())
                 .collect(Collectors.toUnmodifiableList());

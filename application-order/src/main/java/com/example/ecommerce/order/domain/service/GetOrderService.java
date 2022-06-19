@@ -29,8 +29,7 @@ public class GetOrderService implements GetOrderUseCase {
 
     @Override
     public Order execute(final @Valid GetOrderQuery query) {
-        Order order = dataProvider.findOne(query.getId())
-                .orElseThrow();
+        Order order = dataProvider.findOne(query.getId()).orElseThrow();
 
         return this.bindOrderItems(order);
     }

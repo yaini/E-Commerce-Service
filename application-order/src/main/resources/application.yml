@@ -18,11 +18,10 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     producer:
-      key-serializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
-      value-serializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.serializer.key.delegate.class: org.apache.kafka.common.serialization.StringSerializer
-        spring.serializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonSerializer
+        spring.json.trusted.packages: "*"
     template:
       default-topic: ecommerce-order-topic
 
@@ -35,6 +34,22 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      failureRateThreshold: 50
+      slowCallRateThreshold: 100
+      slowCallDurationThreshold: 60000
+      permittedNumberOfCallsInHalfOpenState: 4
+      maxWaitDurationInHalfOpenState: 1000
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 1
+      waitDurationInOpenState: 10000
+  instances:
+    catalog:
+      baseConfig: default
+
 application:
   catalog:
-    url: http://APPLICATION-CATALOG/catalogs
+    url: localhost:8000/api/v1/catalogs

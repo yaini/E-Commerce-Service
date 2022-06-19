@@ -1,13 +1,15 @@
 package com.example.ecommerce.catalog.adapter.in.queue.message;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Collection;
 
 @Getter
+@Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderMessage implements Serializable {
     private Long id;
     private Long userId;

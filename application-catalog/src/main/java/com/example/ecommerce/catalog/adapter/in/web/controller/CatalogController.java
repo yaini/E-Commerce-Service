@@ -20,7 +20,7 @@ public class CatalogController {
     private final CatalogWebAdapter adapter;
 
     @GetMapping
-    public ResponseEntity<List<CatalogResponse>> browse(final @RequestParam BrowseCatalogRequest request){
+    public ResponseEntity<List<CatalogResponse>> browse(final BrowseCatalogRequest request){
         return ResponseEntity.ok(adapter.browse(request));
     }
 
@@ -30,7 +30,7 @@ public class CatalogController {
     }
 
     @PostMapping
-    public ResponseEntity<CatalogResponse> add(final SaveCatalogRequest request){
+    public ResponseEntity<CatalogResponse> add(final @RequestBody SaveCatalogRequest request){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(adapter.add(request).getId())

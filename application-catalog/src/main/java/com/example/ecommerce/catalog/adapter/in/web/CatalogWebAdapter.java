@@ -34,6 +34,6 @@ public class CatalogWebAdapter {
     }
 
     public List<CatalogResponse> browse(final BrowseCatalogRequest request) {
-        return CatalogResponseConverter.from(searchUseCase.execute(new SearchCatalogQuery()));
+        return CatalogResponseConverter.from(searchUseCase.execute(new SearchCatalogQuery(request.getIds())));
     }
 }

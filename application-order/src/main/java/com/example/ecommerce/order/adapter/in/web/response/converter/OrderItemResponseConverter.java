@@ -6,6 +6,7 @@ import com.example.ecommerce.order.domain.model.Order;
 import com.example.ecommerce.order.domain.model.OrderItem;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class OrderItemResponseConverter {
                 .build();
     }
 
-    public static List<OrderItemResponse> from(final List<OrderItem> data){
+    public static Collection<OrderItemResponse> from(final Collection<OrderItem> data){
         if(CollectionUtils.isEmpty(data) ){
             return Collections.emptyList();
         }

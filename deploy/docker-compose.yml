@@ -62,3 +62,9 @@ services:
       - ADMINER_DEFAULT_SERVER=database-mysql
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
+
+  zipkin:
+    container_name: ecommerce-zipkin
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
