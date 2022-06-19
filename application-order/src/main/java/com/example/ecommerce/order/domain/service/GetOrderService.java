@@ -29,8 +29,7 @@ public class GetOrderService implements GetOrderUseCase {
 
     @Override
     public Order execute(final @Valid GetOrderQuery query) {
-        Order order = dataProvider.findOne(query.getId())
-                .orElseThrow();
+        Order order = dataProvider.findOne(query.getId()).orElseThrow();
 
         return this.bindOrderItems(order);
     }
@@ -45,7 +44,7 @@ public class GetOrderService implements GetOrderUseCase {
         Map<Long, Product> products = productDataProvider.findBy(data.getProductIds()).stream()
                 .collect(HashMap::new, (m,v) -> m.put(v.getId(), v), HashMap::putAll);
 
-        data.getItems().forEach( v -> v.bind(products.get(v.getProduct().getId())));
+        data.getItems().forEach( v -> v.bind(products.getOrDefault(v.getProduct().getId(), Product.EMPTY)));
         return data;
     }
 }

@@ -20,7 +20,7 @@ public class CatalogDataPersistenceAdapter implements CatalogDataProvider {
     private final CatalogRepository repository;
 
     @Override
-    public Optional<Catalog> findOne(Long id) {
+    public Optional<Catalog> findOne(final Long id) {
         return repository.findById(id).map(CatalogEntityConverter::to);
     }
 
@@ -40,7 +40,7 @@ public class CatalogDataPersistenceAdapter implements CatalogDataProvider {
             return null;
         }
 
-        return repository.findAll().stream()
+        return repository.findAllById(query.getIds()).stream()
                 .map(CatalogEntityConverter::to)
                 .collect(Collectors.toUnmodifiableList());
     }

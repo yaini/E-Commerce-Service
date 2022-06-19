@@ -13,6 +13,6 @@ public class OrderResponse {
     private Long id;
     private Long userId;
     private String comment;
-    private Collection<OrderItem> items;
+    private Collection<OrderItemResponse> items;
     private BigDecimal totalPrice;
 }

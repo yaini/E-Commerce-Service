@@ -4,6 +4,7 @@ import com.example.ecommerce.catalog.adapter.in.queue.message.OrderMessage;
 import com.example.ecommerce.catalog.domain.command.EditCatalogStockCommand;
 import com.example.ecommerce.catalog.port.in.EditCatalogStockUseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor

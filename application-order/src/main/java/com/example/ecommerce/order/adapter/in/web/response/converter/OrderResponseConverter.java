@@ -20,6 +20,7 @@ public class OrderResponseConverter {
                 .userId(data.getUserId())
                 .comment(data.getComment())
                 .totalPrice(data.getTotalPrice())
+                .items(OrderItemResponseConverter.from(data.getItems()))
                 .build();
     }
 

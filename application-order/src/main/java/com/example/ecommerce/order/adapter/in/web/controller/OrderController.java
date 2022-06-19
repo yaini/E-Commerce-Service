@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderResponse> add(final SaveOrderRequest request){
+    public ResponseEntity<OrderResponse> add(final @RequestBody SaveOrderRequest request){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(adapter.add(request).getId())

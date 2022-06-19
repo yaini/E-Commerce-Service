@@ -1,3 +1,13 @@
+server:
+  port: 8000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 spring:
   application:
     name: gateway
@@ -6,19 +16,19 @@ spring:
       default-filters:
         - name: GlobalFilter
           args:
-            baseMessage: Spring Cloud Gateway GlobalFilter
+            baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
       routes:
         - id: user
-          uri: lb://APPLICATION-USER
+          uri: lb://USER
           predicates:
-            - Path=/users/**
+            - Path=/api/v1/users/**
         - id: catalog
-          uri: lb://APPLICATION-CATALOG
+          uri: lb://CATALOG
           predicates:
-            - Path=/catalogs/**
+            - Path=/api/v1/catalogs/**
         - id: order
-          uri: lb://APPLICATION-ORDER
+          uri: lb://ORDER
           predicates:
-            - Path=/orders/**
+            - Path=/api/v1/orders/**

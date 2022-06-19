@@ -21,4 +21,6 @@ public class Product {
     public Product(final Long id){
         this.id = id;
     }
+
+    public static Product EMPTY = new Product(0L, "", BigDecimal.ZERO, 0);
 }
