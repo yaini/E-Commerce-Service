@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -32,6 +33,7 @@ public class Order {
         }
 
         return items.stream()
+                .filter( v -> Objects.nonNull(v.getProduct()) )
                 .map( v -> v.getProduct().getPrice().multiply(BigDecimal.valueOf(v.getQuantity())) )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }

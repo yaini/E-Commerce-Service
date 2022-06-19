@@ -13,6 +13,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.Reader;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -24,15 +25,20 @@ public class ProductWebClient {
     @Value("${application.catalog.url}")
     private String BASE_URL;
 
-    @CircuitBreaker(name = "catalog")
+    @CircuitBreaker(name = "catalog", fallbackMethod = "catalogFallback")
     public Collection<ProductResponse> findBy(final Collection<Long> ids){
 
+        // TODO error handler
         return webClient.get()
                 .uri( v -> v.path(BASE_URL).queryParam("ids", ids).build())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<ProductResponse>>() {})
                 .block();
+    }
+
+    private Collection<ProductResponse> catalogFallback(final Collection<Long> ids, final Throwable e){
+        return Collections.emptyList();
     }
 
 }
