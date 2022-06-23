@@ -9,5 +9,7 @@ public interface OrderItemDataProvider {
 
     Collection<OrderItem> save(final Long orderId, final Collection<OrderItem> items);
 
+    OrderItem save(final Long orderId, final OrderItem item);
+
     Collection<OrderItem> findByOrderId(final Long id);
 }
