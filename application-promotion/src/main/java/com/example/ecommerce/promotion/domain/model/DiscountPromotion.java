@@ -7,13 +7,16 @@ public class DiscountPromotion extends Promotion {
     private BigDecimal discount;
 
     @Override
-    public BigDecimal getDiscountPrice(final BigDecimal price) {
-        return price.multiply(this.discount);
-    }
+    public PromotionPrice apply(final Price target) {
+        if( target == null ){
+            return null;
+        }
 
-    @Override
-    public Integer getPromotionQuantity(final Integer quantity) {
-        return quantity;
-    }
+        BigDecimal price = target.getTotalPrice();
 
+        return PromotionPrice.builder()
+                .promotion(this)
+                .price(price.multiply(discount))
+                .build();
+    }
 }

@@ -7,5 +7,5 @@ import javax.validation.Valid;
 
 public interface ItemPromotionUseCase {
 
-    PromotionItem execute(final @Valid GetProductPromotionPriceCommand command);
+    PromotionItem execute(final Long userId, final @Valid GetProductPromotionPriceCommand command);
 }

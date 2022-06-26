@@ -1,5 +1,6 @@
 package com.example.ecommerce.promotion.domain.command;
 
+import com.example.ecommerce.promotion.domain.model.Price;
 import com.example.ecommerce.promotion.domain.model.PromotionItem;
 import lombok.Getter;
 
@@ -10,10 +11,9 @@ import java.util.Collection;
 @Getter
 public class GetProductPromotionPriceCommand {
     private Collection<Long> ids;
-    private Long userId;
     private Long productId;
     private Integer quantity;
-    private BigDecimal price;
+    private Price price;
 
     public PromotionItem getItem(){
         return PromotionItem.builder()

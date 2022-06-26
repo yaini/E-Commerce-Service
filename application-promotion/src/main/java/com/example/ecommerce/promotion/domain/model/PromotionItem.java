@@ -10,13 +10,14 @@ import java.util.Collection;
 @Builder(toBuilder = true)
 public class PromotionItem {
     private Long id;
-    private BigDecimal price;
+    private Price price;
     private Integer quantity;
-    private Collection<Promotion> promotions;
+    private Collection<PromotionPrice> promotions;
 
-    public void apply(final Promotion promotion){
-        this.price = promotion.getDiscountPrice(this.price);
-        this.quantity = promotion.getPromotionQuantity(this.quantity);
-        this.promotions.add(promotion);
+    public void apply(final Promotion target){
+        PromotionPrice applied = target.apply(this.price);
+
+        this.promotions.add(applied);
+        this.price = new Price(this.price.getUnitPrice(), applied.getPrice());
     }
 }

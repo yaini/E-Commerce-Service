@@ -10,11 +10,12 @@ import java.time.LocalDateTime;
 public abstract class Promotion {
 
     private Long id;
+    private Long campaignId;
     private PromotionType type;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public boolean validate() {
+    public boolean validation(){
         LocalDateTime now = LocalDateTime.now();
 
         if( startTime.isAfter(now) || endTime.isBefore(now) ){
@@ -24,12 +25,6 @@ public abstract class Promotion {
         return true;
     }
 
-    BigDecimal getDiscountPrice(final BigDecimal price){
-        return price;
-    }
-
-    Integer getPromotionQuantity(final Integer quantity){
-        return quantity;
-    }
+    public abstract PromotionPrice apply(final Price target);
 
 }
