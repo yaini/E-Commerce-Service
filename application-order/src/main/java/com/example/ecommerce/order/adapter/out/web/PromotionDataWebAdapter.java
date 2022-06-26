@@ -27,7 +27,7 @@ public class PromotionDataWebAdapter implements PromotionDataProvider {
             return null;
         }
 
-        PromotionRequest request = PromotionRequestConverter.from(orderItem);
-        return PromotionResponseConverter.to(client.apply(request));
+        // TODO
+        return orderItem;
     }
 }
